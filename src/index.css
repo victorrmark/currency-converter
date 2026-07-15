@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme{
+  --font-mono: "JetBrains Mono", monospace;
+
+  /*Colors*/
+  --color-neutral-900: #0A0A0A;
+  --color-neutral-700: #171719;
+  --color-neutral-600: #202022;
+  --color-neutral-500: #2e2e2e;
+  --color-neutral-400: #3d3d3d;
+  --color-neutral-300: #454547;
+  --color-neutral-200: #9d9d9d;
+  --color-neutral-100: #c6c6c6;
+  --color-neutral-50: #ffffff;
+
+  --color-lime-500: #cef739;
+  --color-lime-800: #283300;
+
+  --color-green-500: #42eb05;
+  --color-red-500: #ff4141;
+
+  /*font sizes*/
+  --text-1: 2.5rem;
+  --text-tab: 2rem;
+  --text-2: 1.25rem;
+  --text-3: 1rem;
+  --text-4: .875rem;
+  --text-5: .75rem;
+  --text-6: .625rem;
+
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+}
+
+@layer base {
+  html {
+    font-family: var(--font-mono);
+    background-color: var(--color-neutral-900);
+  }
+}
+
