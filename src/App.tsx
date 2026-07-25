@@ -1,19 +1,22 @@
 import "./App.css";
 import Nav from "./components/nav";
-import Carousel from "./components/carousel/MarketCarousel";
+import MarketTicker from "./components/carousel/MarketTicker";
+import CurrencyCard from "./components/CurrencyCard";
+import PagesLayout from "./layout/PagesLayout";
 
 function App() {
   return (
-    <>
-      <Nav />
-      <Carousel />
+    <div className="flex flex-col w-full h-dvh overflow-hidden gap-8 md:gap-12">
+      <div className="flex flex-col w-full">
+        <Nav />
+        <MarketTicker />
+      </div>
 
-      <h1 className="text-1 font-bold font-mono text-neutral-100">
-        Blank Page for now
-      </h1>
-      <p className="text-3 font-bold font-mono text-neutral-100">Text test</p>
-      <p className="text-6 font-bold font-mono text-neutral-100">Text test</p>
-    </>
+      <main className="w-full lg:w-275 lg:m-auto px-4 pb-8 md:px-6 md:pb-12 lg:px-8 flex-1 flex flex-col gap-8 overflow-scroll scrollbar-none">
+        <CurrencyCard />
+        <PagesLayout />
+      </main>
+    </div>
   );
 }
 
