@@ -1,7 +1,18 @@
 import { ArrowLeftRight, Triangle } from "lucide-react";
 import { removeSign } from "../utils/removeSign";
+import CurrencyButton from "./currencyButton";
 
-export default function Converter({amount, setAmount, converted}: {amount: number, setAmount: (value: number) => void, converted: string | undefined}) {
+interface ConverterProps {
+  amount: number;
+  setAmount: (value: number) => void;
+  converted: string | undefined;
+  base: string;
+  quote: string;
+  setBaseCurrency: (value: string) => void;
+  setQuoteCurrency: (value: string) => void;
+}
+
+export default function Converter({amount, setAmount, converted, base, quote, setBaseCurrency, setQuoteCurrency}: ConverterProps) {
 
   return (
     <div className="w-full flex flex-col gap-4 p-4 md:flex-row md:gap-6 md:p-5 items-center">
@@ -17,15 +28,7 @@ export default function Converter({amount, setAmount, converted}: {amount: numbe
 
           />
           {/* <p className="text-neutral-50 text-tab lg:text-1 hover:cursor-text hover:border-b ">1,000</p> */}
-          <button className="p-2.5 gap-2 flex rounded-lg bg-neutral-500 outline outline-neutral-400 cursor-pointer items-center justify-between hover:bg-neutral-400">
-            <div className="rounded-full w-5 h-5 bg-red-500" />
-            <p className="text-neutral-50 text-4">USD</p>
-            <Triangle
-              className="fill-neutral-50 rotate-180"
-              size={12}
-              strokeWidth={0}
-            />
-          </button>
+          <CurrencyButton currency={base} setCurrency={setBaseCurrency} />
         </div>
       </div>
 
