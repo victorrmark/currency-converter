@@ -3,8 +3,13 @@ import Nav from "./components/nav";
 import MarketTicker from "./components/carousel/MarketTicker";
 import CurrencyCard from "./components/CurrencyCard";
 import PagesLayout from "./layout/PagesLayout";
+import { useGetCurrency } from "./hooks/useGetCurrency";
 
 function App() {
+  const { data } = useGetCurrency(1, "USD", "EUR");
+
+  console.log(data)
+
   return (
     <div className="flex flex-col w-full h-dvh overflow-hidden gap-8 md:gap-12">
       <div className="flex flex-col w-full">

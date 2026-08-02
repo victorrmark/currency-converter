@@ -15,7 +15,7 @@ function MarketTicker() {
         <div className="flex animate-marquee">
 
         {[...markets, ...markets].map((market, index) => (
-          <MarketCard key={market.id} market={market} index={index} />
+          <MarketCard key={index} market={market} index={index} />
         ))}
         </div>
       </div>
