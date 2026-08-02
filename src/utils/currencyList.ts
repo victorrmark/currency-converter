@@ -19,7 +19,7 @@ export const currencyList = {
     },
     {
       "code": "GBP",
-      "name": "British Pound Sterling",
+      "name": "British Pound",
       "flag": "https://flagcdn.com/16x12/gb.png"
     }
   ],
