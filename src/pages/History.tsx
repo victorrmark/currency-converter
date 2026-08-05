@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ConversionStats from "../components/conversionStats";
-import Chart from "../components/chart";
+import ChartComponent from "../components/rateChart";
 
 const rateHistory: string[] = ["1D", "1W", "1M", "3M", "1Y", "5Y"];
 
@@ -24,7 +24,10 @@ export default function History() {
           )}
         </nav>
       </div>
-      <Chart />
+      <div className="flex w-full flex-col py-3 px-4 rounded-2xl bg-neutral-700 outline outline-neutral-600 gap-4">
+
+      <ChartComponent />
+      </div>
     </div>
   );
 }

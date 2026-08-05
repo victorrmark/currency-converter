@@ -9,7 +9,7 @@ interface CurrencyButtonProps {
 }
 
 function CurrencyButton({ currency, setCurrency }: CurrencyButtonProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
 
   const searchRef = useRef<HTMLInputElement>(null);
