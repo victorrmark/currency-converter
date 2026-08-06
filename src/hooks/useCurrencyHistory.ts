@@ -1,10 +1,8 @@
 import axios from "axios";
 import {
   useQuery,
-  //   useMutation,
-  //   useQueryClient,
 } from "@tanstack/react-query";
-import type { ConversionData } from "../type/data";
+import type {  HistoryData } from "../type/data";
 import { getRange } from "../utils/getDateRange";
 
 export function useCurrencyHistory(
@@ -12,7 +10,7 @@ export function useCurrencyHistory(
   quote: string,
   range: { label: string; value: number },
 ) {
-  return useQuery<ConversionData>({
+  return useQuery<HistoryData[]>({
     queryKey: ["history", base, quote, range],
     queryFn: async () => {
       const r = getRange(range);
@@ -21,12 +19,8 @@ export function useCurrencyHistory(
         `&quotes=${quote}` +
         `&from=${r.from}&to=${r.to}`;
       const { data } = await axios.get("https://api.frankfurter.dev" + path);
-      //   const rate = new Intl.NumberFormat("en", {
-      //     style: "currency",
-      //     currency: quote,
-      //   });
-      //   return {...data, convert: rate.format(data.rate * amount) };
-      return data;
+
+      return data.map(({date, rate}:{date:string; rate:number})=>({date, rate}));
     },
   });
 }

@@ -8,10 +8,12 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
 
   const [quoteCurrency, setQuoteCurrency] = useState(currencyList.popular[1]);
 
-  function swapCurrencies() {
-    setBaseCurrency(quoteCurrency);
-    setQuoteCurrency(baseCurrency);
-  }
+  const [amount, setAmount] = useState(0);
+
+  // function swapCurrencies() {
+  //   setBaseCurrency(quoteCurrency);
+  //   setQuoteCurrency(baseCurrency);
+  // }
 
   return (
     <CurrencyContext.Provider
@@ -20,7 +22,8 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
         quoteCurrency,
         setBaseCurrency,
         setQuoteCurrency,
-        swapCurrencies,
+        amount,
+        setAmount,
       }}
     >
       {children}

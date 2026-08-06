@@ -1,7 +1,12 @@
 import { AreaSeries, createChart, ColorType } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 
-export default function ChartComponent() {
+type ChartData = {
+  date: string;
+  rate: number;
+};
+
+export default function ChartComponent({ data }: { data: ChartData[] }) {
   const colors = {
     backgroundColor: "#171719",
     lineColor: "#cef739",
@@ -31,6 +36,11 @@ export default function ChartComponent() {
 
       leftPriceScale: {
         visible: true,
+        minimumWidth: 60,
+        scaleMargins: {
+          top: 0.2,
+          bottom: 0.2,
+        },
       },
       grid: {
         vertLines: {
@@ -40,10 +50,14 @@ export default function ChartComponent() {
           color: "#2B2B2B",
         },
       },
+      timeScale: {
+        timeVisible: false,
+        secondsVisible: false,
+        // tickMarkMaxCharacterLength: 5,
+      },
       width: chartContainerRef.current.clientWidth,
       height: 300,
     });
-    chart.timeScale().fitContent();
 
     const newSeries = chart.addSeries(AreaSeries, {
       lineColor: colors.lineColor,
@@ -51,13 +65,14 @@ export default function ChartComponent() {
       bottomColor: "rgba(216,255,57,0)",
       lineWidth: 2,
     });
-    newSeries.setData([
-      { time: "2026-05-01", value: 0.85 },
-      { time: "2026-05-02", value: 0.853 },
-      { time: "2026-05-03", value: 0.848 },
-      { time: "2026-05-04", value: 0.857 },
-      { time: "2026-05-05", value: 0.861 },
-    ]);
+    newSeries.setData(
+      data.map((item) => ({
+        time: item.date,
+        value: item.rate,
+      })),
+    );
+
+    chart.timeScale().fitContent();
 
     window.addEventListener("resize", handleResize);
 
@@ -67,6 +82,7 @@ export default function ChartComponent() {
       chart.remove();
     };
   }, [
+    data,
     colors.backgroundColor,
     colors.lineColor,
     colors.textColor,

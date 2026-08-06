@@ -1,27 +1,14 @@
 import { ArrowLeftRight } from "lucide-react";
 import { removeSign } from "../utils/removeSign";
 import CurrencyButton from "./currencyButton";
-import type { Currency } from "../utils/currencyList";
+import { useCurrency } from "../context/useCurrency";
+import { useGetCurrency } from "../hooks/useGetCurrency";
 
-interface ConverterProps {
-  amount: number;
-  setAmount: (value: number) => void;
-  converted: string | undefined;
-  base: Currency;
-  quote: Currency;
-  setBaseCurrency: (value: Currency) => void;
-  setQuoteCurrency: (value: Currency) => void;
-}
+export default function Converter() {
+  const { amount, setAmount, baseCurrency, quoteCurrency, setBaseCurrency, setQuoteCurrency } = useCurrency();
+  const { data } = useGetCurrency(Number(amount), baseCurrency.code, quoteCurrency.code);
 
-export default function Converter({
-  amount,
-  setAmount,
-  converted,
-  base,
-  quote,
-  setBaseCurrency,
-  setQuoteCurrency,
-}: ConverterProps) {
+
   return (
     <div className="w-full flex flex-col gap-4 p-4 md:flex-row md:gap-6 md:p-5 items-center">
       <div className="gap-4 p-4 rounded-2xl md:gap-5 md:p-5 flex flex-col w-full outline-1 outline-neutral-500 bg-neutral-600 min-w-0">
@@ -35,7 +22,7 @@ export default function Converter({
             placeholder="0"
           />
           {/* <p className="text-neutral-50 text-tab lg:text-1 hover:cursor-text hover:border-b ">1,000</p> */}
-          <CurrencyButton currency={base} setCurrency={setBaseCurrency} />
+          <CurrencyButton currency={baseCurrency} setCurrency={setBaseCurrency} />
         </div>
       </div>
 
@@ -49,9 +36,9 @@ export default function Converter({
           <p
             className={`text-tab lg:text-1 hover:cursor-text ${amount ? "text-lime-500" : "text-neutral-200"}`}
           >
-            {amount ? removeSign(converted) : "0"}
+            {amount ? removeSign(data?.convert) : "0"}
           </p>
-          <CurrencyButton currency={quote} setCurrency={setQuoteCurrency} />
+          <CurrencyButton currency={quoteCurrency} setCurrency={setQuoteCurrency} />
         </div>
       </div>
     </div>

@@ -10,7 +10,10 @@ type CurrencyContextType = {
   setBaseCurrency: React.Dispatch<React.SetStateAction<Currency>>;
   setQuoteCurrency: React.Dispatch<React.SetStateAction<Currency>>;
 
-  swapCurrencies: () => void;
+  amount: number;
+  setAmount: React.Dispatch<React.SetStateAction<number>>;
+
+  // swapCurrencies: () => void;
 };
 
 export const CurrencyContext = createContext<CurrencyContextType | null>(null);

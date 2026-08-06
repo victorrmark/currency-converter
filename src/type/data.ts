@@ -5,3 +5,8 @@ export interface ConversionData {
     rate: number;
     convert: string;
 }
+
+export interface HistoryData {
+    date: string;
+    rate: number;
+}
