@@ -8,8 +8,6 @@ export default function ChartComponent() {
     textColor: "#9d9d9d",
     areaTopColor: "rgba(216,255,57,.45)",
     areaBottomColor: "rgba(216,255,57,0)",
-    // areaTopColor: "#cef739",
-    // areaBottomColor: "rgba(206, 247, 57, 0.18)",
   };
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -49,8 +47,8 @@ export default function ChartComponent() {
 
     const newSeries = chart.addSeries(AreaSeries, {
       lineColor: colors.lineColor,
-      topColor: colors.areaTopColor,
-      bottomColor: colors.areaBottomColor,
+      topColor: "rgba(216,255,57,.45)",
+      bottomColor: "rgba(216,255,57,0)",
       lineWidth: 2,
     });
     newSeries.setData([
@@ -78,3 +76,145 @@ export default function ChartComponent() {
 
   return <div ref={chartContainerRef} />;
 }
+
+// import {
+//   AreaSeries,
+//   ColorType,
+//   createChart,
+//   type IChartApi,
+//   type ISeriesApi,
+//   type Time,
+// } from "lightweight-charts";
+// import { useEffect, useRef } from "react";
+
+// type ChartData = {
+//   time: Time;
+//   value: number;
+// };
+
+// type Props = {
+//   data: ChartData[];
+// };
+
+// export default function CurrencyChart({ data }: Props) {
+//   const containerRef = useRef<HTMLDivElement>(null);
+
+//   const chartRef = useRef<IChartApi | null>(null);
+
+//   const seriesRef = useRef<ISeriesApi<"Area"> | null>(null);
+
+//   useEffect(() => {
+//     if (!containerRef.current) return;
+
+//     const styles = getComputedStyle(document.documentElement);
+
+//     const background = styles.getPropertyValue("--color-surface").trim();
+
+//     const text = styles.getPropertyValue("--color-muted").trim();
+
+//     const border = styles.getPropertyValue("--color-border").trim();
+
+//     const primary = styles.getPropertyValue("--color-primary").trim();
+
+//     const chart = createChart(containerRef.current, {
+//       width: containerRef.current.clientWidth,
+//       height: 320,
+
+//       layout: {
+//         background: {
+//           type: ColorType.Solid,
+//           color: background,
+//         },
+
+//         textColor: text,
+//       },
+
+//       rightPriceScale: {
+//         visible: true,
+
+//         borderColor: border,
+//       },
+
+//       leftPriceScale: {
+//         visible: false,
+//       },
+
+//       grid: {
+//         vertLines: {
+//           visible: false,
+//         },
+
+//         horzLines: {
+//           color: border,
+//           visible: true,
+//         },
+//       },
+
+//       crosshair: {
+//         vertLine: {
+//           color: primary,
+//           width: 1,
+//           labelVisible: false,
+//         },
+
+//         horzLine: {
+//           color: primary,
+//           width: 1,
+//           labelVisible: false,
+//         },
+//       },
+
+//       timeScale: {
+//         borderColor: border,
+//       },
+//     });
+
+//     const areaSeries = chart.addSeries(AreaSeries, {
+//       lineColor: primary,
+
+//       lineWidth: 2,
+
+//       topColor: "rgba(216,255,57,.45)",
+
+//       bottomColor: "rgba(216,255,57,0)",
+
+//       priceLineVisible: false,
+
+//       lastValueVisible: true,
+
+//       crosshairMarkerVisible: true,
+//     });
+
+//     areaSeries.setData(data);
+
+//     chart.timeScale().fitContent();
+
+//     chartRef.current = chart;
+
+//     seriesRef.current = areaSeries;
+
+//     const resizeObserver = new ResizeObserver(() => {
+//       chart.applyOptions({
+//         width: containerRef.current!.clientWidth,
+//       });
+//     });
+
+//     resizeObserver.observe(containerRef.current);
+
+//     return () => {
+//       resizeObserver.disconnect();
+//       chart.remove();
+//     };
+//   }, []);
+
+//   useEffect(() => {
+//     seriesRef.current?.setData(data);
+//   }, [data]);
+
+//   return (
+//     <div
+//       ref={containerRef}
+//       className="w-full h-80 rounded-xl overflow-hidden"
+//     />
+//   );
+// }

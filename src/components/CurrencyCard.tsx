@@ -7,7 +7,6 @@ import { currencyList } from "../utils/currencyList";
 
 export default function CurrencyCard() {
   const [amount, setAmount] = useState(0);
-  // const [flag, setFlag] = useState(false);
 const [baseCurrency, setBaseCurrency] = useState(currencyList.popular[0]);  
 const [quoteCurrency, setQuoteCurrency] = useState(currencyList.popular[1]);
   const { data } = useGetCurrency(Number(amount), baseCurrency.code, quoteCurrency.code);

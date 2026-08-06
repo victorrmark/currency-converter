@@ -1,4 +1,4 @@
-import { ArrowLeftRight, Triangle } from "lucide-react";
+import { ArrowLeftRight } from "lucide-react";
 import { removeSign } from "../utils/removeSign";
 import CurrencyButton from "./currencyButton";
 import type { Currency } from "../utils/currencyList";
