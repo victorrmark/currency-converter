@@ -4,7 +4,7 @@ import { useGetCurrency } from "../hooks/useGetCurrency";
 
 export default function ConversionRate() {
   const { baseCurrency, quoteCurrency } = useCurrency();
-  const { data, isLoading } = useGetCurrency(
+  const { data, isLoading, error } = useGetCurrency(
     1,
     baseCurrency.code,
     quoteCurrency.code,
@@ -17,11 +17,7 @@ export default function ConversionRate() {
           Getting rate...
         </p>
       )}
-      {data ? (
-        <p className="text-6 text-neutral-50 uppercase md:text-5 md:px-5 md:py-4 justify-between">
-          1 {data.base} = {data.rate} {data.quote}
-        </p>
-      ) : (
+      {error && (
         <p className="text-6 text-neutral-50 md:text-5 md:px-5 md:py-4">
           Problem loading rate,{" "}
           <button
@@ -33,6 +29,10 @@ export default function ConversionRate() {
           </button>
         </p>
       )}
+
+      <p className="text-6 text-neutral-50 uppercase md:text-5 md:px-5 md:py-4 justify-between">
+        1 {data?.base} = {data?.rate} {data?.quote}
+      </p>
 
       <div className="flex items-center gap-3">
         <button className="px-3 py-2 rounded-lg bg-lime-500 cursor-pointer text-neutral-50 flex justify-between items-center gap-2">

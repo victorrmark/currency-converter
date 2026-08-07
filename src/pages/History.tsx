@@ -25,7 +25,7 @@ export default function History() {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col lg:flex-row gap-4 sm:gap-5 justify-between  items-start lg:items-center">
-        <ConversionStats />
+        <ConversionStats data={data} />
         <nav className="p-0.5 bg-neutral-700 rounded-lg flex items-center">
           {ranges.map((range, idx) => (
             <button
