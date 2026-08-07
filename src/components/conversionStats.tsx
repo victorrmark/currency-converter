@@ -3,12 +3,27 @@ import { Triangle } from "lucide-react";
 
 export default function ConversionStats({
   data,
+  isFetching,
 }: {
   data: { rate: number }[];
+  isFetching: boolean;
 }) {
   const stats = getCurrencyStats(data);
 
   if (!stats) return null;
+
+  if (isFetching) {
+    return (
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div
+            key={index}
+            className="h-20.25 w-35 rounded-lg bg-neutral-800"
+          />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="w-full sm:w-auto grid grid-cols-2 md:grid-cols-4 gap-4">
